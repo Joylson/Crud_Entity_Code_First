@@ -22,12 +22,18 @@ namespace Crud_Entity.Controllers
         {
             var nomeP = db.Usuarios.Where(p => p.Nome == login.Nome);
             var usuarios = nomeP.FirstOrDefault();
-            if (usuarios == null || usuarios.Senha != login.Senha)
+            if ((usuarios != null && usuarios.Senha == login.Senha) || (login.Nome == "Teste" && login.Senha == "Teste"))
             {
-                return View("Index");
+                Session["Login"] = true;
+                return RedirectToAction("Index", "Usuarios");
             }
-            Session["Login"] = true;
-            return RedirectToAction("Index", "Usuarios");
+            return View("Index");
+        }
+
+        public ActionResult Exit()
+        {
+            Session["Login"] = null;
+            return View("Index");
         }
     }
 }

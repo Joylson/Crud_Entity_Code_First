@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>Login</title>
     <link href="~/Content/materialize.min.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
     <script src="~/Scripts/materialize.min.js"></script>
@@ -16,29 +16,26 @@
 </head>
 <body>
     <div class="row scope-login">
-        <form class="s4 form-login">
+        @using (Html.BeginForm("LoginS", "Login", FormMethod.Post, new {@id="form-login", @class = "s4 form-login" }))
+        {
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="login" type="text" class="validate">
+                    <input id="login" name="Nome" type="text" class="validate">
                     <label for="login">Login</label>
                 </div>
                 <div class="input-field col s12">
-                    <input id="senha" type="text" class="validate">
+                    <input id="senha" name="Senha" type="password" class="validate">
                     <label for="senha">Senha</label>
                 </div>
                 <div class="col s6">
                     <a href="#login" class="waves-effect waves-light btn" onclick="clickLogin()">Entrar</a>
                 </div>
             </div>
-        </form>
+        }
     </div>
     <script>
         var clickLogin = function () {
-            $.post("@Url.Action("LoginS","Login")", { Nome: $('#login').val(), Senha: $('#senha').val() }).done{
-                function(data) {
-                    $.get("@Url.Action("Index","Usuarios")")
-                }
-            }
+            $('#form-login').submit();
         };
     </script>
 </body>
