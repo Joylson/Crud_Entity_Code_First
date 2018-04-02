@@ -8,9 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using Crud_Entity.Context;
 using Crud_Entity.Models;
+using Crud_Entity.Filters;
 
 namespace Crud_Entity.Controllers
 {
+    [ManagerFilters]
     public class UsuariosController : Controller
     {
         private ModelContext db = new ModelContext();
@@ -24,6 +26,7 @@ namespace Crud_Entity.Controllers
         // GET: Usuarios/Details/5
         public ActionResult Details(int? id)
         {
+            ViewBag.teste = Session["Login"].ToString(); 
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

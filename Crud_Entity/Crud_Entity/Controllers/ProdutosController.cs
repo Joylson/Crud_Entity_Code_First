@@ -8,9 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using Crud_Entity.Context;
 using Crud_Entity.Models;
+using Crud_Entity.Filters;
 
 namespace Crud_Entity.Controllers
 {
+    [ManagerFilters]
     public class ProdutosController : Controller
     {
         private ModelContext db = new ModelContext();
